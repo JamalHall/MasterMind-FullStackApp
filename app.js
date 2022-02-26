@@ -3,7 +3,7 @@ const express = require('express')
 const connectDB = require('./config/databaseCFG')
 const app = express()
 const dotenv = require('dotenv')
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 3000
 
 //express configurations
 app.use(express.static('public'))
@@ -34,10 +34,10 @@ const adminRoute = require('./routes/adminRoute')
 
 //router routes
 app.use('/', homeRoute)
-app.use('/mastermind',requiresAuth(),mastermindRoute )
-//app.use('/mastermind',mastermindRoute )
-app.use('/admin',requiresAuth(),adminRoute )
-//app.use('/admin',adminRoute )
+//app.use('/mastermind',requiresAuth(),mastermindRoute )
+app.use('/mastermind',mastermindRoute )
+//app.use('/admin',requiresAuth(),adminRoute )
+app.use('/admin',adminRoute )
 
 
 //Listen Method 
