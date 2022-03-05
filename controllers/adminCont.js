@@ -19,7 +19,7 @@ module.exports = {
             }            
             let arr=[]
 
-            const dbReply=dbResponse.map(e=>e = e.date) 
+            const dbReply=dbResponse
             for(let e of dbResponse){arr=[...e.data,...arr]}
             await mProcess.calculate(arr)
             const masterMindSmart = await mProcess.randomAndSearch()
