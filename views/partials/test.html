@@ -1,0 +1,66 @@
+<div slider id="slider-distance">
+      <div inverse-left style="width:70%;"></div>
+      <div inverse-right style="width:70%;"></div>
+      <div range style="left:30%;right:40%;"></div>
+      <span thumb style="left:30%;"></span>
+      <span thumb style="left:60%;"></span>      
+      <div sign style="left:30%;"></div>     
+      <div sign style="left:60%;">
+
+    <span id="value"></span>        
+</div>
+
+<span id="value"></span> 
+
+
+    <form name="yearQuery" action="#">
+        <div>         
+            <span>
+                <input id="sYear" for="minYear" type="number" placeholder="Beginning Year: 2011" value="" minlength="4" maxlength="4" name="startYear">
+            </span>
+
+            <label for="minYear">Beginning Year:</label>
+                <input id="minYear" type="range" class="slider" value="" max="2022" min="2011" step="1" data-reset="2011" >
+        </div>    
+
+        <div>
+            <span>
+                <input id="eYear" for="maxYear" type="number" placeholder="Ending Year: 2022" value="" minlength="4" maxlength="4" name="endYear">
+            </span>  
+    
+            <label for="maxYear"> Ending Year: </label>
+                <input id="maxYear" type="range" class="slider"  value="" max="2022" min="2011" step="1" data-reset="2022">    
+        </div>     
+    <button class="submitYear" type="sumbit"> Submit </button>
+   </form> 
+
+</div>
+
+
+  <script>
+document.querySelectorAll('.slider').forEach(e=>addEventListener('input',setValue))
+let find
+function setValue(){
+ // event.target.value=event.target.dataset.reset
+const target = document.querySelector('#slider-distance')
+
+let value = (100/(parseInt(event.target.max)-parseInt(event.target.min)))*parseInt(event.target.value)-(100/(parseInt(event.target.max)-parseInt(event.target.min)))*parseInt(event.target.min)
+
+let yearNum = Math.max(event.target.value,target.childNodes[17][2].value-(1))
+
+event.target.parentNode.children[0].children[0].value=yearNum
+
+if(event.target)
+//console.log(target.childNodes)
+
+find=(event.target.parentNode)
+
+let children = target.childNodes
+  
+  children[3].style.width=(100-value)+'%';
+  children[5].style.right=(100-value)+'%';
+  children[9].style.left=value+'%';
+  children[13].style.left=value+'%';  
+  }
+
+  </script>

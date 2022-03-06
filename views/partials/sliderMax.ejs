@@ -26,6 +26,8 @@
   this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(1));
   let value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
   const parent = document.querySelector('#slider-distance')
+  console.log(parent.childNodes)
+  console.log(this.max)
   let children = parent.childNodes[1].childNodes;
   console.log('max',this.parentNode)
   children[3].style.width=(100-value)+'%';
