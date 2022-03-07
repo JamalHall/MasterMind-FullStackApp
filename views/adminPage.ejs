@@ -29,17 +29,10 @@
     <% } %>
 </div>  
 
-<div>
-    <span><h5>Select Range of Years to include in the Mastermind</h5></span>
-    <form name="yearQuery" action="#">
-        <div>  
-        <span><%- include('partials/sliderMin') %></span>          
-        <span><input id="sYear" for="minYear" type="number" placeholder="Beginning Year: 2011" value="" minlength="4" maxlength="4" name="startYear"></span>
-        <span><%- include('partials/sliderMax') %></span>
-        <span><input id="eYear" for="maxYear" type="number" placeholder="Ending Year: 2022" value="" minlength="4" maxlength="4" name="endYear"></span>
-        <button class="submitYear" type="sumbit">Submit</button>
-        </div>      
-    </form>
+<div> <h5>Select Range of Years to include in the Mastermind</h5>
+   
+        <div><%- include('partials/sliders') %></div>         
+       
 
         <span><h5>MasterMind Generation</h5><button id="generate" type="button">Smart Pick</button></span>
         

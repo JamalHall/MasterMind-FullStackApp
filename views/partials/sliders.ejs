@@ -1,4 +1,5 @@
 <div slider id="slider-distance">
+  
       <div inverse-left style="width:70%;"></div>
       <div inverse-right style="width:70%;"></div>
       <div range style="left:30%;right:40%;"></div>
@@ -12,7 +13,6 @@
 
 <span id="value"></span> 
 
-
     <form name="yearQuery" action="#">
         <div>         
             <span>
@@ -20,7 +20,7 @@
             </span>
 
             <label for="minYear">Beginning Year:</label>
-                <input id="minYear" type="range" class="slider" value="" max="2022" min="2011" step="1" data-reset="2011" >
+                <input id="minYear" name="minYear" class="slider" type="range"  value="" max="2022" min="2011" step="1" data-reset="2011" >
         </div>    
 
         <div>
@@ -29,24 +29,26 @@
             </span>  
     
             <label for="maxYear"> Ending Year: </label>
-                <input id="maxYear" type="range" class="slider"  value="" max="2022" min="2011" step="1" data-reset="2022">    
+                <input id="maxYear" name="maxYear" class="slider" type="range"  value="" max="2022" min="2011" step="1" data-reset="2022">    
         </div>     
     <button class="submitYear" type="sumbit"> Submit </button>
    </form> 
 
-</div>
+
 
 
   <script>
-document.querySelectorAll('.slider').forEach(e=>addEventListener('input',setValue))
+document.querySelector('#maxYear').addEventListener('input',setValuemax)
+document.querySelector('#minYear').addEventListener('input',setValuemin)
 let find
-function setValue(){
+
+function setValuemax(){
  // event.target.value=event.target.dataset.reset
 const target = document.querySelector('#slider-distance')
 
 let value = (100/(parseInt(event.target.max)-parseInt(event.target.min)))*parseInt(event.target.value)-(100/(parseInt(event.target.max)-parseInt(event.target.min)))*parseInt(event.target.min)
 
-let yearNum = Math.max(event.target.value,target.childNodes[17][2].value-(1))
+let yearNum = Math.max(Math.min(2022,event.target.value),Math.min(2022,target.childNodes[17][0].value))
 
 event.target.parentNode.children[0].children[0].value=yearNum
 
@@ -63,4 +65,28 @@ let children = target.childNodes
   children[13].style.left=value+'%';  
   }
 
+function setValuemin(){
+ // event.target.value=event.target.dataset.reset
+const target = document.querySelector('#slider-distance')
+
+let value = (100/(parseInt(event.target.max)-parseInt(event.target.min)))*parseInt(event.target.value)-(100/(parseInt(event.target.max)-parseInt(event.target.min)))*parseInt(event.target.min)
+
+let yearNum = Math.min(Math.max(2011,event.target.value),Math.max(2011,target.childNodes[17][2].value))
+console.log('ET',event.target.value,'TcN',target.childNodes)
+
+event.target.parentNode.children[0].children[0].value=yearNum
+
+if(event.target)
+//console.log(target.childNodes)
+
+find=(event.target.parentNode)
+
+let children = target.childNodes
+  
+  children[3].style.width=(100-value)+'%';
+  children[5].style.right=(100-value)+'%';
+  children[9].style.left=value+'%';
+  children[13].style.left=value+'%';  
+  }
   </script>
+</div>
