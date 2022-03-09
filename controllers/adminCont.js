@@ -15,7 +15,10 @@ module.exports = {
             if(!req.query.startYear||!req.query.endYear){
                  dbResponse = await rc5DataDB.find()
             } else{
-                 dbResponse = await rc5DataDB.find({year:{$gte: req.query.startYear}, year: {$lte: req.query.endYear}})
+                 dbResponse = await rc5DataDB.find({
+                     year:{$gte: req.query.startYear}, 
+                     year: {$lte: req.query.endYear}
+                    })
             }            
             let arr=[]
 
@@ -23,22 +26,39 @@ module.exports = {
             for(let e of dbResponse){arr=[...e.data,...arr]}
             await mProcess.calculate(arr)
             const masterMindSmart = await mProcess.randomAndSearch()
+
             //console.log(req)
             console.log(req.query)
-            console.log('dbresponse',dbReply)
-           // console.log(masterMindSmart)                                        
+            console.log('db response',dbReply)
+            // console.log(masterMindSmart)                                        
             //res.json(arr)
-            res.render('adminPage.ejs',  {authStatus: req.oidc.isAuthenticated(), user: req.oidc.user, mmVars:  JSON.stringify(masterMindSmart) ,dbres: JSON.stringify(dbReply), smartPick: masterMindSmart.smartPick})
+
+            res.render('adminPage.ejs',  {
+                authStatus: req.oidc.isAuthenticated(), 
+                user: req.oidc.user, 
+                mmVars:  JSON.stringify(masterMindSmart) ,
+                dbres: JSON.stringify(dbReply), 
+                smartPick: masterMindSmart.smartPick
+            })
         }catch(err){ console.error(err)}
     },
 
     createData: async (req,res)=>{
+
         console.log(req.body.year)
+
         try{ 
             const dataDates = await mProcess.parseData(req.body.data)
-            await rc5DataDB.create({uploadDate: date, year: +req.body.year, date: dataDates, data: req.body.data})
+            await rc5DataDB.create({
+                uploadDate: date, 
+                year: +req.body.year, 
+                date: dataDates, 
+                data: req.body.data, 
+                user: req.oidc.user
+            })
             console.log('created Main DB entries')
             console.log('works')
+
             res.json('create data hi')
 
         }catch(err){ console.error(err)}

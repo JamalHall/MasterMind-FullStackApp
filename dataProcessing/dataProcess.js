@@ -17,9 +17,6 @@ mmVariables = {
             return date
         },
 
-
-
-
         calculate: (arr3 ) => {  //added arr3 argument
 
             // added below
@@ -87,15 +84,18 @@ mmVariables = {
                     }
 
                 //console.log('Min difference',diffCurrent,'Nearest Dynamic value',nearest,'Selected Number',+selectedNum)
-            }
-     
+            }     
                 //console.log(smartPick)
                 //console.log(mmVariables)
                 return {smartPick:smartPick.sort((a,b)=>a-b),mmVars:mmVariables}  
                   
-            }
+        }
 
-    }
+
+
+
+
+    }// end of exports function
  
 
   
