@@ -1,4 +1,9 @@
 body {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
   font-family:Georgia, 'Times New Roman', Times, serif;
   color: rgb(178, 204, 29);    
   background-image: linear-gradient( rgba(0, 174, 255, 0.192),rgba(0, 0, 255, 0.37)),  url("../images/dotpass.gif");
