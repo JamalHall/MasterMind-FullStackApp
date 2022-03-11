@@ -1,9 +1,7 @@
 body {
   font-family:Georgia, 'Times New Roman', Times, serif;
-  color: rgb(219, 191, 241);
-  background-image: url("../images/circutbrain.jpg");
-  background-image: linear-gradient(rgba(0, 0, 255, 0.37), rgba(255, 255, 0, 0.192)); 
-  background-image: url("../images/dotpass.gif");
+  color: rgb(178, 204, 29);    
+  background-image: linear-gradient( rgba(0, 174, 255, 0.192),rgba(0, 0, 255, 0.37)),  url("../images/dotpass.gif");
   background-size: cover; 
 }
 
